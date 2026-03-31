@@ -90,7 +90,7 @@ public final class Proximity_vc extends JavaPlugin implements Listener {
         TextComponent message = new TextComponent("§aClick here to open the voice chat");
         message.setClickEvent(new ClickEvent(
                 ClickEvent.Action.OPEN_URL,
-                String.format("%s/?username=%s&room_id=%s&websocket_address=%s:%d&user_token=%s&password-INSECURE=%s&autojoin&pfp_url=%s%s%s", VOICE_CHAT_WEBSITE, sender.getName(), SERVER_NAME, WEBSOCKET_ADDRESS, WEBSOCKET_PORT, sender.getName(), ROOM_PASSWORD, PFP_URL, sender.getName(), PFP_SIZE)
+                String.format("%s/?username=%s&room_id=%s&websocket_address=%s&user_token=%s&password-INSECURE=%s&autojoin&pfp_url=%s%s/%s", VOICE_CHAT_WEBSITE, sender.getName(), SERVER_NAME, WEBSOCKET_ADDRESS, sender.getName(), ROOM_PASSWORD, PFP_URL, sender.getName(), PFP_SIZE)
         ));
 
         sender.spigot().sendMessage(message);
