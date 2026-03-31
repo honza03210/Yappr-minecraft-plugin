@@ -16,6 +16,8 @@ public final class Proximity_vc extends JavaPlugin implements Listener {
     String SERVER_NAME = "SomeRandomServer";
     String WEBSOCKET_ADDRESS = "https://mc.yappr.cz";
     String VOICE_CHAT_WEBSITE = "https://yappr.cz";
+    String PFP_URL = "https://mc-heads.net/avatar/";
+    String PFP_SIZE = "32";
     String ROOM_PASSWORD = "Password";
     int WEBSOCKET_PORT = 8080;
     private MCWebSocketServer WSServer;
@@ -88,7 +90,7 @@ public final class Proximity_vc extends JavaPlugin implements Listener {
         TextComponent message = new TextComponent("§aClick here to open the voice chat");
         message.setClickEvent(new ClickEvent(
                 ClickEvent.Action.OPEN_URL,
-                String.format("%s/?username=%s&room_id=%s&websocket_address=%s:%d&user_token=%s&password-INSECURE=%s&autojoin", VOICE_CHAT_WEBSITE, sender.getName(), SERVER_NAME, WEBSOCKET_ADDRESS, WEBSOCKET_PORT, sender.getName(), ROOM_PASSWORD)
+                String.format("%s/?username=%s&room_id=%s&websocket_address=%s:%d&user_token=%s&password-INSECURE=%s&autojoin&pfp_url=%s%s%s", VOICE_CHAT_WEBSITE, sender.getName(), SERVER_NAME, WEBSOCKET_ADDRESS, WEBSOCKET_PORT, sender.getName(), ROOM_PASSWORD, PFP_URL, sender.getName(), PFP_SIZE)
         ));
 
         sender.spigot().sendMessage(message);
