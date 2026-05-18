@@ -47,11 +47,8 @@ public final class Proximity_vc extends JavaPlugin implements Listener {
                         return;
                     }
                     WSServer.positions_map.put(player.getName(), getPlayerPos(player));
-                    getLogger().info("Updated " + player.getName() + " positions");
                 });
                 WSServer.SendPositions();
-
-                getLogger().info("Positions sent");
             });
         }, 0L, 5L);
     }
@@ -66,8 +63,6 @@ public final class Proximity_vc extends JavaPlugin implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        //player.sendMessage(String.format("https://jaguar-magnetic-deer.ngrok-free.app/?username=%s&room=%s&websocket_address=%s:%d&user_token=%s", player.getName(), SERVER_NAME, WEBSOCKET_ADDRESS, WEBSOCKET_PORT, player.getName()));
-        // should probably be rewritten and moved to onCommand
         WSServer.positions_map.put(player.getName(), getPlayerPos(player));
     }
 

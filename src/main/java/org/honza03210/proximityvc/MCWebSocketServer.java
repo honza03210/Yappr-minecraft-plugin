@@ -54,18 +54,28 @@ public class MCWebSocketServer extends WebSocketServer {
     @Override
     public void onMessage(WebSocket conn, String message) {
         System.out.println("Received: " + message);
-        //conn.send("Echo: " + message);
         JsonObject obj = JsonParser.parseString(message).getAsJsonObject();
         try {
             if (!positions_map.containsKey(obj.get("token").getAsString())) {
                 conn.send("#InvalidToken");
-
             }
-            // mby catch the old value and notify the previous receiver?
             active_feeds.put(obj.get("token").getAsString(), conn);
         } catch (Exception e) {
             conn.send("#InvalidToken");
         }
+    }
+
+    public String getPositionString(float[] position) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < position.length; i++) {
+            if (i > 0) sb.append(';');
+            if (i == 3) {
+                sb.append(-position[i]);
+            } else {
+                sb.append(position[i]);
+            }
+        }
+        return "mc;" + sb;
     }
 
     public void SendPositions() {
@@ -76,13 +86,8 @@ public class MCWebSocketServer extends WebSocketServer {
                 if (Arrays.equals(pos, last_positions_map.get(token))) {
                     return;
                 }
-                StringBuilder sb = new StringBuilder();
-                for (int i = 0; i < pos.length; i++) {
-                    if (i > 0) sb.append(';');
-                    sb.append(pos[i]);
-                }
                 last_positions_map.put(token, positions_map.get(token).clone());
-                conn.send("mc;" + sb);
+                conn.send("mc;" + getPositionString(pos));
             } catch (Exception e) {
                 conn.send("Error when sending position: " + e);
             }
