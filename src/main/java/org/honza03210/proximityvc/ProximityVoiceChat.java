@@ -12,7 +12,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public final class Proximity_vc extends JavaPlugin implements Listener {
+public final class ProximityVoiceChat extends JavaPlugin implements Listener {
     String SERVER_NAME = "SomeRandomServer";
     String WEBSOCKET_ADDRESS = "https://mc.yappr.cz";
     String VOICE_CHAT_WEBSITE = "https://yappr.cz";

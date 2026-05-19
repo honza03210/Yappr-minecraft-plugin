@@ -1,6 +1,6 @@
 name: proximity-vc
 version: '${project.version}'
-main: org.honza03210.proximityvc.Proximity_vc
+main: org.honza03210.proximityvc.ProximityVoiceChat
 api-version: '1.20'
 
 
