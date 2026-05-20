@@ -70,6 +70,7 @@ public class MCWebSocketServer extends WebSocketServer {
         for (int i = 0; i < position.length; i++) {
             if (i > 0) sb.append(';');
             if (i == 3) {
+                // Minecraft inverts Z axis
                 sb.append(-position[i]);
             } else {
                 sb.append(position[i]);
