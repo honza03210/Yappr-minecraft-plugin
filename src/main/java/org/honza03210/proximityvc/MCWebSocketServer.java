@@ -76,7 +76,7 @@ public class MCWebSocketServer extends WebSocketServer {
                 sb.append(position[i]);
             }
         }
-        return "mc;" + sb;
+        return sb.toString();
     }
 
     public void SendPositions() {
