@@ -54,6 +54,13 @@ public class MCWebSocketServer extends WebSocketServer {
     @Override
     public void onMessage(WebSocket conn, String message) {
         System.out.println("Received: " + message);
+        try {
+            if (!message.startsWith("{")){
+                return;
+            }
+        } catch (Exception e) {
+            System.err.println("error:" + e);
+        }
         JsonObject obj = JsonParser.parseString(message).getAsJsonObject();
         try {
             if (!positions_map.containsKey(obj.get("token").getAsString())) {
@@ -69,12 +76,7 @@ public class MCWebSocketServer extends WebSocketServer {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < position.length; i++) {
             if (i > 0) sb.append(';');
-            if (i == 3) {
-                // Minecraft inverts Z axis
-                sb.append(-position[i]);
-            } else {
-                sb.append(position[i]);
-            }
+            sb.append(position[i]);
         }
         return "mc;" + sb;
     }
